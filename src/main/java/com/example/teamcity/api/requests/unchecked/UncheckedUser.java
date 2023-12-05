@@ -1,7 +1,7 @@
-package com.example.teamcity.api.request.unchecked;
+package com.example.teamcity.api.requests.unchecked;
 
-import com.example.teamcity.api.request.CrudInterface;
-import com.example.teamcity.api.request.Request;
+import com.example.teamcity.api.requests.CrudInterface;
+import com.example.teamcity.api.requests.Request;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 

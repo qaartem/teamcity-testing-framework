@@ -1,4 +1,4 @@
-package com.example.teamcity.api.request;
+package com.example.teamcity.api.requests;
 
 public interface CrudInterface {
     public  Object create(Object obj);

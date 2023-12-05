@@ -1,8 +1,8 @@
-package com.example.teamcity.api.request;
+package com.example.teamcity.api.requests;
 
-import com.example.teamcity.api.request.checked.CheckedBuildConfig;
-import com.example.teamcity.api.request.checked.CheckedProject;
-import com.example.teamcity.api.request.checked.CheckedUser;
+import com.example.teamcity.api.requests.checked.CheckedBuildConfig;
+import com.example.teamcity.api.requests.checked.CheckedProject;
+import com.example.teamcity.api.requests.checked.CheckedUser;
 import io.restassured.specification.RequestSpecification;
 import lombok.Getter;
 

@@ -1,8 +1,8 @@
-package com.example.teamcity.api.request;
+package com.example.teamcity.api.requests;
 
-import com.example.teamcity.api.request.unchecked.UncheckedBuildConfig;
-import com.example.teamcity.api.request.unchecked.UncheckedProject;
-import com.example.teamcity.api.request.unchecked.UncheckedUser;
+import com.example.teamcity.api.requests.unchecked.UncheckedBuildConfig;
+import com.example.teamcity.api.requests.unchecked.UncheckedProject;
+import com.example.teamcity.api.requests.unchecked.UncheckedUser;
 import io.restassured.specification.RequestSpecification;
 import lombok.Getter;
 

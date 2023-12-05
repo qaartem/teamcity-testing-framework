@@ -1,7 +1,7 @@
-package com.example.teamcity.api.api;
+package com.example.teamcity.api;
 
-import com.example.teamcity.api.request.checked.CheckedProject;
-import com.example.teamcity.api.request.checked.CheckedUser;
+import com.example.teamcity.api.requests.checked.CheckedProject;
+import com.example.teamcity.api.requests.checked.CheckedUser;
 import com.example.teamcity.api.spec.Specifications;
 import org.testng.annotations.Test;
 

@@ -1,9 +1,9 @@
-package com.example.teamcity.api.request.checked;
+package com.example.teamcity.api.requests.checked;
 
 import com.example.teamcity.api.models.User;
-import com.example.teamcity.api.request.CrudInterface;
-import com.example.teamcity.api.request.Request;
-import com.example.teamcity.api.request.unchecked.UncheckedUser;
+import com.example.teamcity.api.requests.CrudInterface;
+import com.example.teamcity.api.requests.Request;
+import com.example.teamcity.api.requests.unchecked.UncheckedUser;
 import io.restassured.specification.RequestSpecification;
 import org.apache.http.HttpStatus;
 
