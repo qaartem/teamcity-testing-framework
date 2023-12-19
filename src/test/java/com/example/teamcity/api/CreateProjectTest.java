@@ -19,7 +19,6 @@ public class CreateProjectTest extends BaseApiTest{
         new CheckedProject(Specifications.getSpec()
                 .authSpec(testData.getUser()))
                 .create(testData.getProject());
-
     }
 
     @Test
