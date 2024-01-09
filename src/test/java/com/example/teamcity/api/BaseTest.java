@@ -1,4 +1,4 @@
-package com.example.teamcity.api.api;
+package com.example.teamcity.api;
 
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.AfterMethod;

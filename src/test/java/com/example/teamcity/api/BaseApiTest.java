@@ -1,8 +1,8 @@
-package com.example.teamcity.api.api;
+package com.example.teamcity.api;
 
 import com.example.teamcity.api.generators.TestDataStorage;
-import com.example.teamcity.api.request.CheckedRequest;
-import com.example.teamcity.api.request.UncheckedRequest;
+import com.example.teamcity.api.requests.CheckedRequest;
+import com.example.teamcity.api.requests.UncheckedRequest;
 import com.example.teamcity.api.spec.Specifications;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

@@ -1,10 +1,10 @@
-package com.example.teamcity.api.api;
+package com.example.teamcity.api;
 
 import com.example.teamcity.api.enums.Role;
 import com.example.teamcity.api.generators.TestDataGenerator;
-import com.example.teamcity.api.request.checked.CheckedBuildConfig;
-import com.example.teamcity.api.request.checked.CheckedProject;
-import com.example.teamcity.api.request.unchecked.UncheckedBuildConfig;
+import com.example.teamcity.api.requests.checked.CheckedBuildConfig;
+import com.example.teamcity.api.requests.checked.CheckedProject;
+import com.example.teamcity.api.requests.unchecked.UncheckedBuildConfig;
 import com.example.teamcity.api.spec.Specifications;
 import org.apache.http.HttpStatus;
 import org.hamcrest.Matchers;
@@ -53,10 +53,6 @@ public class RolesTest extends BaseApiTest {
 
         checkedWithSuperUser.getUserRequest()
                 .create(testData.getUser());
-
-//        new CheckedProject(Specifications.getSpec()
-//                .authSpec(testData.getUser()))
-//                .create(testData.getProject());
 
         var buildConfig = new CheckedBuildConfig(Specifications.getSpec().authSpec(testData.getUser()))
                 .create(testData.getBuildType());
