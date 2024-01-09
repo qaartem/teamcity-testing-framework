@@ -9,6 +9,8 @@ import com.example.teamcity.api.spec.Specifications;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
+import static com.example.teamcity.api.errors.ErrorMessages.BUILD_CONFIG_ERROR_ID;
+import static com.example.teamcity.api.errors.ErrorMessages.BUILD_CONFIG_INTERNAL_SERVER_ERROR;
 import static org.hamcrest.Matchers.containsString;
 
 public class CreateBuildConfigTest extends BaseApiTest {
@@ -28,7 +30,6 @@ public class CreateBuildConfigTest extends BaseApiTest {
         new CheckedBuildConfig(Specifications.getSpec()
                 .authSpec(testData.getUser()))
                 .create(testData.getBuildType());
-
     }
 
     @Test
@@ -103,7 +104,7 @@ public class CreateBuildConfigTest extends BaseApiTest {
                         .project(testData.getProject())
                         .build())
                 .then().assertThat().statusCode(HttpStatus.SC_INTERNAL_SERVER_ERROR)
-                .body(containsString("ID should start with a latin letter and contain only latin letters, digits and underscores (at most 225 characters)."));
+                .body(containsString(BUILD_CONFIG_ERROR_ID));
 
 
     }
@@ -130,7 +131,7 @@ public class CreateBuildConfigTest extends BaseApiTest {
                         .project(testData.getProject())
                         .build())
                 .then().assertThat().statusCode(HttpStatus.SC_INTERNAL_SERVER_ERROR)
-                .body(containsString("Error has occurred during request processing, status code: 500 (Internal Server Error)."));
+                .body(containsString(BUILD_CONFIG_INTERNAL_SERVER_ERROR));
     }
 
     @Test

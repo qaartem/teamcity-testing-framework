@@ -20,5 +20,4 @@ public class RandomData {
     public static String getStringStartsSpecialChars() {
         return RandomStringUtils.random(LENGTH10, false, false);
     }
-
 }
