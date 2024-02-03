@@ -43,10 +43,15 @@ echo "Start teamcity server"
 cd $teamcity_server_workdir
 
 docker run -d --name $teamcity_server_container_name \
-    -v "$(pwd)/datadir:/data/teamcity_server/datadir" \
+    #-v "$(pwd)/datadir:/data/teamcity_server/datadir" \
     -v $(pwd)/logs:/opt/teamcity/logs \
     -p 8111:8111 \
     jetbrains/teamcity-server
+
+    docker run -d --name $teamcity_server_container_name \
+        -v $(pwd)/logs:/opt/teamcity/logs \
+        -p 8111:8111 \
+        jetbrains/teamcity-server
 
 echo "Teamcity Server is running..."
 
@@ -125,3 +130,5 @@ mvn test -DsuiteXmlFile=testng-suites/api-suite.xml
 
 echo "Run UI tests"
 mvn test -DsuiteXmlFile=testng-suites/ui-suite.xml
+
+read -p "Press any key to continue" x
