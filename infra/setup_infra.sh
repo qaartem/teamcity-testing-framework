@@ -42,21 +42,19 @@ echo "Start teamcity server"
 
 cd $teamcity_server_workdir
 
-docker run -d --name $teamcity_server_container_name \
-    #-v "$(pwd)/datadir:/data/teamcity_server/datadir" \
-    -v $(pwd)/logs:/opt/teamcity/logs \
+#mkdir -p logs
+
+docker run -d --name $teamcity_server_container_name  \
+    -v $(pwd)/logs:/opt/teamcity/logs  \
     -p 8111:8111 \
     jetbrains/teamcity-server
-
-    docker run -d --name $teamcity_server_container_name \
-        -v $(pwd)/logs:/opt/teamcity/logs \
-        -p 8111:8111 \
-        jetbrains/teamcity-server
 
 echo "Teamcity Server is running..."
 
 ################################
 echo "Start teamcity agent"
+
+cd ..
 
 cd $teamcity_agent_workdir
 
@@ -70,18 +68,11 @@ echo "Teamcity Agent is running..."
 ################################
 echo "Start selenoid"
 
-#cd .. && cd $selenoid_workdir
 cd .. && cd "$selenoid_workdir"
-#mkdir config
-mkdir -p config
+mkdir config
+#mkdir -p config
 cp "$teamcity_tests_directory/infra/browsers.json" config/
 
-#docker run -d
-#            --name $selenoid_container_name
-#            -p 4444:4444
-#            -v /var/run/docker.sock:/var/run/docker.sock
-#            -v $(pwd)/config/:/etc/selenoid/:ro
-#    aerokube/selenoid:latest-release
 docker run -d \
         --name $selenoid_container_name \
         -p 4444:4444 \
@@ -104,14 +95,18 @@ echo "Start selenoid-ui"
 #            -p 8080:8080 aerokube/selenoid-ui:latest-release --selenoid-uri "http://$ip:4444"
 
 docker run -d --name $selenoid_ui_container_name \
-           -p 80:8080 \
+           -p 8080:8080 \
            aerokube/selenoid-ui:latest-release \
            --selenoid-uri "http://$ip:4444"
 
 ################################
-#echo "Setup teamcity server"
-##cd .. && cd ..
-#mvn clean test -Dtest=SetupTest#startUpTest
+echo "Setup teamcity server"
+
+cd "$teamcity_tests_directory"
+
+echo "Current directory: $(pwd)"
+
+mvn clean test -Dtest=SetupTest#startUpTest
 
 ################################
 echo "Parse superuser token"
@@ -120,10 +115,20 @@ echo "Super user token: $superuser_token"
 
 ################################
 echo "Run system tests"
-cd .. && cd .. && cd ..
+#cd .. && cd .. && cd ..
 
-echo "host=$ip:8111\nsuperUserToken=$superuser_token\nremote=true" > $teamcity_tests_directory/src/main/resources/config.properties
-cat $teamcity_tests_directory/src/main/resources/config.properties
+#echo "host=$ip:8111\nsuperUserToken=$superuser_token\nremote=http://$ip:4444/wd/hub\nbrowser=firefox" > $teamcity_tests_directory/src/main/resources/config.properties
+#cat $teamcity_tests_directory/src/main/resources/config.properties
+
+config=$teamcity_tests_directory/src/main/resources/config.properties
+
+echo "host=$ip:8111" > $config
+echo "superUserToken=$superuser_token" >> $config
+echo "remote=http://$ip:4444/wd/hub" >> $config
+echo "browser=firefox" >> $config
+cat $config
+
+echo "Current directory: $(pwd)"
 
 echo "Run API tests"
 mvn test -DsuiteXmlFile=testng-suites/api-suite.xml
@@ -131,4 +136,4 @@ mvn test -DsuiteXmlFile=testng-suites/api-suite.xml
 echo "Run UI tests"
 mvn test -DsuiteXmlFile=testng-suites/ui-suite.xml
 
-read -p "Press any key to continue" x
+read -p "Press any key to continue"
