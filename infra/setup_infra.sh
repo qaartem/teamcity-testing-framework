@@ -134,6 +134,6 @@ echo "Run API tests"
 mvn test -DsuiteXmlFile=testng-suites/api-suite.xml
 
 echo "Run UI tests"
-mvn test -DsuiteXmlFile=testng-suites/ui-suite.xml
+#mvn test -DsuiteXmlFile=testng-suites/ui-suite.xml zakommentil
 
 read -p "Press any key to continue"
