@@ -115,10 +115,6 @@ echo "Super user token: $superuser_token"
 
 ################################
 echo "Run system tests"
-#cd .. && cd .. && cd ..
-
-#echo "host=$ip:8111\nsuperUserToken=$superuser_token\nremote=http://$ip:4444/wd/hub\nbrowser=firefox" > $teamcity_tests_directory/src/main/resources/config.properties
-#cat $teamcity_tests_directory/src/main/resources/config.properties
 
 config=$teamcity_tests_directory/src/main/resources/config.properties
 
@@ -134,6 +130,6 @@ echo "Run API tests"
 mvn test -DsuiteXmlFile=testng-suites/api-suite.xml
 
 echo "Run UI tests"
-#mvn test -DsuiteXmlFile=testng-suites/ui-suite.xml zakommentil
+mvn test -DsuiteXmlFile=testng-suites/ui-suite.xml
 
 read -p "Press any key to continue"
