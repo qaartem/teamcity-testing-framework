@@ -15,7 +15,6 @@ public class StartUpPage extends Page {
     private SelenideElement header = element($("h1#header"));
     private SelenideElement acceptLicense = element("input[id='accept']");
     private SelenideElement restoreFromBackupButton = element("input[id='restoreButton']");
-    //private SelenideElement backFileUploaded = element("password");
     private SelenideElement proceedButton = element("input[id='proceedButton']");
     private SelenideElement continueButton = element("input[name='Continue']");
 
