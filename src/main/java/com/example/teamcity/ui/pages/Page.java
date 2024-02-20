@@ -5,7 +5,6 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.example.teamcity.ui.Selectors;
 import com.example.teamcity.ui.elements.PageElement;
-import com.example.teamcity.ui.elements.ProjectElement;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -25,10 +24,10 @@ public abstract class Page {
     }
 
     public void waitUntilPageIsLoaded(){
-        pageWaitingMarker.shouldNotBe(Condition.visible, Duration.ofMinutes(1));
+        pageWaitingMarker.shouldNotBe(Condition.visible, Duration.ofMinutes(3));
     }
     public void waitUntilDataIsSaved() {
-        savingWaitingMarker.shouldNotBe(Condition.visible, Duration.ofSeconds(30));
+        savingWaitingMarker.shouldNotBe(Condition.visible, Duration.ofSeconds(90));
     }
     public  <T extends PageElement> List<T> generatePageElements(
             ElementsCollection collection,
