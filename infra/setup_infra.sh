@@ -115,7 +115,6 @@ cd "$teamcity_tests_directory"
 echo "Current directory: $current"
 
 mvn clean test -Dtest=SetupTest#startUpTest
-#mvn clean test -Dtest=TeamcitySetupTest#startUpTest
 
 ################################
 echo "Parse superuser token"
