@@ -89,8 +89,17 @@ jobs:
         run: mvn test -DsuiteXmlFile=testng-suites/api-suite.xml
         timeout-minutes: 30
 
+      - name: Show folders
+        run: ls
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: target
+
       - name: Load test report history
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         if: always()
         continue-on-error: true
         with:
@@ -103,22 +112,22 @@ jobs:
         with:
           gh_pages: gh-pages
           allure_history: allure-history
-          allure_results: allure-results
+          allure_results: target/allure-results
+      - name: Set up superUserToken environment variable
+        run: echo ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish test report
         uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          deploy_key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
           publish_branch: gh-pages
           publish_dir: allure-history
 
-          # Создание репорта с покрытием API тестов, основанного на Swagger
       - name: Run Swagger coverage
         if: always()
-        run: .swagger-coverage-commandline/bin/swagger-coverage-commandline -s http://$HOST:8111/app/rest/swagger.json -i target/swagger-coverage-output
+        run: ./swagger-coverage-commandline-1.5.0/bin/swagger-coverage-commandline -s http://$HOST:8111/app/rest/swagger.json -i target/swagger-coverage
 
-          # Swagger coverage репорт сохраняется в артефакты GitHub Actions прогона
       - name: Save Swagger coverage
         uses: actions/upload-artifact@v4
         if: always()
