@@ -1,11 +1,13 @@
 package com.example.teamcity.ui;
 
 import com.codeborne.selenide.Configuration;
+import lombok.experimental.UtilityClass;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.HashMap;
 import java.util.Map;
+@UtilityClass
 
 public class BrowserSettings {
     public static void setup(String browser) {
