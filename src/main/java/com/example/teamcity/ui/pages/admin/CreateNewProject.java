@@ -7,6 +7,8 @@ import com.example.teamcity.ui.pages.Page;
 import lombok.Getter;
 
 import static com.codeborne.selenide.Selenide.element;
+import static com.codeborne.selenide.Selenide.sleep;
+
 @Getter
 public class CreateNewProject extends Page {
     private SelenideElement urlInput = element(Selectors.byId("url"));
@@ -31,6 +33,7 @@ public class CreateNewProject extends Page {
     }
 
     public void setupProject(String projectName, String buildTypeName) {
+        sleep(2000);
         projectNameInput.clear();
         projectNameInput.sendKeys(projectName);
         buildTypeNameInput.clear();
