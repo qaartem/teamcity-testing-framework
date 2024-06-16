@@ -36,7 +36,6 @@ for container in "${container_names[@]}"; do
 done
 
 ################################
-
 echo "Start teamcity server"
 
 cd $teamcity_server_workdir
