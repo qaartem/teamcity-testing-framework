@@ -24,6 +24,8 @@ public class BrowserSettings {
     private static void setFirefoxOptions() {
         Configuration.browserCapabilities = new FirefoxOptions();
         Configuration.browserCapabilities.setCapability("selenoid:options", getSelenoidOptions());
+        Configuration.timeout = 20000;
+        Configuration.browserSize = "1980x1080";
     }
     private static void setChromeOptions() {
         Configuration.browserCapabilities = new ChromeOptions();

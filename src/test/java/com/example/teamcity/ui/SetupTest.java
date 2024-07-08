@@ -8,8 +8,9 @@ public class SetupTest extends BaseUiTest{
     @Test
     public void startUpTest(){
         new StartUpPage()
-            .open()
-            .setupTeamCityServer()
-            .getHeader().shouldHave(Condition.text("Create Administrator Account"));
+                .open()
+                .setupTeamCityServer()
+                .getHeader()
+                .shouldHave(Condition.text("Create Administrator Account"));
     }
 }

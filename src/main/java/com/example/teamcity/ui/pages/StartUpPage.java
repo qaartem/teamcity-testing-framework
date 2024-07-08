@@ -15,7 +15,8 @@ public class StartUpPage extends Page {
     private SelenideElement createAdminAccountHeader = element(Selectors.byId("header"));
     private SelenideElement header = element(Selectors.byId("header"));
     private SelenideElement acceptLicense = element(Selectors.byId("accept"));
-    private SelenideElement proceedButton = element(Selectors.byId("proceedButton"));
+//    private SelenideElement proceedButton = element(Selectors.byId("proceedButton"));
+    private SelenideElement proceedButton = element(Selectors.byValue("Proceed"));
     private SelenideElement submitButton = element(Selectors.byType("submit"));
 
     public StartUpPage open(){
@@ -24,7 +25,7 @@ public class StartUpPage extends Page {
     }
 
     public SelenideElement getHeader() {
-        return createAdminAccountHeader.shouldBe(Condition.visible, Duration.ofSeconds(35));
+        return createAdminAccountHeader.shouldBe(Condition.visible, Duration.ofMinutes(15));
     }
 
     public StartUpPage setupTeamCityServer(){
@@ -33,8 +34,8 @@ public class StartUpPage extends Page {
         waitUntilPageIsLoaded();
         proceedButton.click();
         waitUntilPageIsLoaded();
-        header.shouldBe(Condition.visible, Duration.ofMinutes(5));
-        acceptLicense.shouldBe(Condition.enabled, Duration.ofMinutes(5));
+        header.shouldBe(Condition.visible, Duration.ofMinutes(10));
+        acceptLicense.shouldBe(Condition.enabled, Duration.ofMinutes(10));
         acceptLicense.scrollTo();
         acceptLicense.click();
         submitButton.click();

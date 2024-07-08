@@ -13,6 +13,16 @@ public class Selectors {
     public static ByAttribute byType(String value) {
         return new ByAttribute("type", value);
     }
+    public static ByAttribute byValue(String value) {
+        return new ByAttribute("value", value);
+    }
+
+    public static ByAttribute byName(String value) {
+        return new ByAttribute("name", value);
+    }
+    public static ByAttribute byDataTitle(String value) {
+        return new ByAttribute("data-title", value);
+    }
 
     public static ByAttribute byDataTest(String value) {
         return new ByAttribute("data-test", value);

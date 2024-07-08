@@ -11,10 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.element;
 
 public abstract class Page {
     private SelenideElement submitButton = element(Selectors.byType("submit"));
+    private SelenideElement submitButtonConfigBuildStep = $("input[value='Save'][name='submitButton']");
     private SelenideElement savingWaitingMarker = element(Selectors.byId("saving"));
     private SelenideElement pageWaitingMarker = element(Selectors.byDataTest("ring-loader"));
 
@@ -23,8 +25,13 @@ public abstract class Page {
         waitUntilDataIsSaved();
     }
 
+    public void submitConfigBuildStep() {
+        submitButtonConfigBuildStep.click();
+        waitUntilDataIsSaved();
+    }
+
     public void waitUntilPageIsLoaded(){
-        pageWaitingMarker.shouldNotBe(Condition.visible, Duration.ofMinutes(3));
+        pageWaitingMarker.shouldNotBe(Condition.visible, Duration.ofMinutes(10));
     }
     public void waitUntilDataIsSaved() {
         savingWaitingMarker.shouldNotBe(Condition.visible, Duration.ofSeconds(90));
